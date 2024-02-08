@@ -31,6 +31,7 @@ const router = express.Router()
 // GET /books
 router.get('/books', (req, res, next) => {
 	Book.find()
+    .populate('owner')
 		.then((books) => {
 			// `books` will be an array of Mongoose documents
 			// we want to convert each one to a POJO, so we use `.map` to
@@ -43,11 +44,29 @@ router.get('/books', (req, res, next) => {
 		.catch(next)
 })
 
+// GET /books/mine
+router.get('/books/mine', requireToken, (req, res, next) => {
+	Book.find({owner: req.user.id})
+		.then((books) => {
+			// `books` will be an array of Mongoose documents
+			// we want to convert each one to a POJO, so we use `.map` to
+			// apply `.toObject` to each one
+			return books.map((book) => book.toObject())
+		})
+		// respond with status 200 and JSON of the books
+		.then((books) => res.status(200).json({ books: books }))
+		// if an error occurs, pass it to the handler
+		.catch(next)
+})
+
+
+
 // SHOW
 // GET /books/5a7db6c74d55bc51bdf39793
 router.get('/books/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Book.findById(req.params.id)
+    .populate('owner')
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "book" JSON
 		.then((book) => res.status(200).json({ book: book.toObject() }))
