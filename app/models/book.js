@@ -31,4 +31,8 @@ const bookSchema = new mongoose.Schema(
 	}
 )
 
+bookSchema.virtual('description').get(function(){
+    return `${this.name} is a ${this.genre} book`
+})
+
 module.exports = mongoose.model('Book', bookSchema)

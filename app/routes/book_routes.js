@@ -37,7 +37,7 @@ router.get('/books', (req, res, next) => {
 			// apply `.toObject` to each one
 			return books.map((book) => book.toObject())
 		})
-		// respond with status 200 and JSON of the examples
+		// respond with status 200 and JSON of the books
 		.then((books) => res.status(200).json({ books: books }))
 		// if an error occurs, pass it to the handler
 		.catch(next)
@@ -45,7 +45,7 @@ router.get('/books', (req, res, next) => {
 
 // SHOW
 // GET /books/5a7db6c74d55bc51bdf39793
-router.get('/books/:id', requireToken, (req, res, next) => {
+router.get('/books/:id', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	Book.findById(req.params.id)
 		.then(handle404)
