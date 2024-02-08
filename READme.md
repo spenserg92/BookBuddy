@@ -81,7 +81,7 @@ Author is comprised of the following:
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
-| POST   | `/toys/:petId`         | `toys#create`    |
-| PATCH  | `/toys/:petId/:toyId`  | `toys#update`  |
-| DELETE | `/toys/:petId/:toyId`  | `toys#delete`   |
+| POST   | `/authors/:bookId`         | `authors#create`    |
+| PATCH  | `/authors/:bookId/:authorId`  | `authors#update`  |
+| DELETE | `/authors/:bookId/:authorId`  | `authors#delete`   |
 

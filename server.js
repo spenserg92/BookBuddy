@@ -5,6 +5,7 @@ const cors = require('cors')
 
 // require route files
 const bookRoutes = require('./app/routes/book_routes')
+const authorRoutes = require('./app/routes/author_routes')
 const userRoutes = require('./app/routes/user_routes')
 
 // require middleware
@@ -66,6 +67,7 @@ app.use(requestLogger)
 
 // register route files
 app.use(bookRoutes)
+app.use(authorRoutes)
 app.use(userRoutes)
 
 // register error handling middleware

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const authorSchema = require('./author')
+
 const bookSchema = new mongoose.Schema(
     {
         name: {
@@ -13,12 +15,11 @@ const bookSchema = new mongoose.Schema(
         published: {
             type: Date,
             // required: true,
-
         },
         inSeries: {
             type: Boolean
         },
-        // authors: [authorSchema],
+        authors: [authorSchema],
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
