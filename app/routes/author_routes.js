@@ -45,7 +45,7 @@ router.patch('/authors/:bookId/:authorId', requireToken, removeBlanks, (req, res
 			return book.save()
 		})
 		.then(() => res.sendStatus(204))
-		.catch(next)
+		.catch(next) 
 })
 
 // DESTROY

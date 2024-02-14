@@ -11,7 +11,7 @@ const authorSchema = new mongoose.Schema({
         type: String,
     },
     dateOfBirth: {
-        type: Date,
+        type: String,
         // required: true,
     },
     isActive: {
